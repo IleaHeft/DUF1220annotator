@@ -10,85 +10,32 @@ Background/reference data used:
 - Proteome
 - Reference genome, GRCh38,`wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz`
 - cDNA data: 
-- RefSeq gene/exon annotation data:
+- RefSeq gene/exon annotation data:  
+-- \*genomic.gff.gz
+```
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/latest_assembly_versions/GCF_000001405.35_GRCh38.p9/GCF_000001405.35_GRCh38.p9_genomic.gff.gz
+```
+-- \*assembly_report.txt 
+```
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/latest_assembly_versions/GCF_000001405.35_GRCh38.p9/GCF_000001405.35_GRCh38.p9_assembly_report.txt
+```
 - Ensembl gene/exon annotation data:
+```
+ wget ftp://ftp.ensembl.org/pub/release-86/gtf/homo_sapiens/Homo_sapiens.GRCh38.86.gtf.gz
+```
 - PFAM seed domains
 
 #### Steps
 1. Clone repository  
 2. Run _human-hmmer-annotation-prep.sh_  
-3. Run _human-hmmer-annotation-workflow-part1.sh
+3. Run _human-hmmer-annotation-workflow-part1.sh_
 4. 
-5. Run _human-hmmer-annotation-workflow-part2.sh
+5. Run _human-hmmer-annotation-workflow-part2.sh_
 
 
 Note: Code from Montgomery & Zimmer, 2015 (https://github.com/qfma/duf1220)
 The exon and gene annotation files from Ensembl and RefSeq, processed into sorted, merged files using my code
 
-
-Download the proteome and place it in a folder titled: `./sequences/pep/` 
-Uncompress the proteome with `gzip -d name-of-proteome-file.gz`
-
-#### For each proteome, make a new file that contains only the longest isoforms in each proteome
-
-**Script:** _get-longest-isoform.py_ (Credit goes to Zimmer & Montgomery, 2015)  
-**Input:**   
-1) Path to folder that contains the original, unzipped, proteome files   
-2) The output location (in this case, the same as the original folder where the proteome files are  
-
-**Example Usage:**  
-```
-./get-longest-isoform.py sequences/pep/ sequences/pep/ 
-```
-
-
-Uncompress each cDNA file with `gzip -d name-of-cDNA-file.gz`
-
-
-Uncompress genome files with `gzip -d name-of-genome-file.fa.gz`
-
-
-Uncompress genome files with `gzip -d name-of-genome-file.fa.gz`
-
-### Generate BED files of reference exon, gene, and coding sequence annotations (RefSeq and Ensembl)
-
-#### Download the RefSeq and Ensembl annotation files
-**RefSeq:**
-Download latest RefSeq annotations from: <ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/latest_assembly_versions/>  
-
-Download the files and unzip the GFF file:
-- \*genomic.gff.gz  -- this file provides the coordinates of annotated featues (e.g. genes, exons, coding sequence)
-- \*assembly_report.txt -- this file gives you the relationship between accession number and chromosome, which is required for converstion of the GFF data to a bed file
-
-**Example download code, used on 2016-11-16:**
-```
-wget ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/latest_assembly_versions/GCF_000001405.35_GRCh38.p9/GCF_000001405.35_GRCh38.p9_genomic.gff.gz
-```
-Unzip the file:  
-```
-gzip -d GCF_000001405.35_GRCh38.p9/GCF_000001405.35_GRCh38.p9_genomic.gff.gz
-```
-```
-wget ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/latest_assembly_versions/GCF_000001405.35_GRCh38.p9/GCF_000001405.35_GRCh38.p9_assembly_report.txt 
-```
-**Ensembl**
-Download latest Ensembl annotations by going to this website <http://uswest.ensembl.org/info/data/ftp/index.html> and clicking on the GTF link in the appropriate species column.  This will open the folder of files for download.  While Ensembl has their annotation data as both GFF3 and GTF file formats, the GTF file has more annotation data than the GFF3 file does. 
-
-Download the and unzip the file:
-- Homo_sapiens.GRCh38.86.gtf.gz (version number could be different depending on when you download) 
-
-**Example download code, used on 2016-11-21:**
-```
- wget ftp://ftp.ensembl.org/pub/release-86/gtf/homo_sapiens/Homo_sapiens.GRCh38.86.gtf.gz
-```
-Unzip the file:  
-```
-gzip -d Homo_sapiens.GRCh38.86.gtf.gz 
-```
-
-#### Convert the GFF3/GTF files from RefSeq and Ensembl into useful BED files
-
-##### Convert the GFF3/GTF files into BED file
 **Script:** _convert-gff3-or-gtf-to-bed-files.py_ 
 **Actions:**  
 - _convert-gff3-or-gtf-to-bed-files.py_ Extracts the coordinates and relevant annotation data from the GFF3 or GTF file and puts it in BED file format.  Will need to run once for RefSeq and once for Ensembl  
