@@ -1,13 +1,16 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-# Action: Using the starting proteome file, make a new file that contains only the logest isoforms of each protein
+source scripts/config.sh
 
-# Script: _get-longest-isoform.py_ (Credit to Zimmer & Montgomery, 2015) 
+#Action: Using the starting proteome file, make a new file that contains only the logest isoforms of each protein
 
-# Inputs:
-## Path to folder that contains the original, unzipped, proteome files   
-## The output location (in this case, the same as the original folder where the proteome files are  
+#Script: _get-longest-isoform.py_ (Credit to Zimmer & Montgomery, 2015) 
 
+#Inputs:
+##Path to folder that contains the original, unzipped, proteome files   
+##The output location (in this case, the same as the original folder where the proteome files are  
+
+echo "Getting longest isoforms from proteome"
 python scripts/get-longest-isoform.py sequences/pep/ sequences/pep/ 
 
 ####################
@@ -32,10 +35,20 @@ python scripts/get-longest-isoform.py sequences/pep/ sequences/pep/
 
 # Run for RefSeq
 
-python scripts/convert-gff3-or-gtf-to-bed-files.py data/reference-annotations/refseq/human/GCF_000001405.35_GRCh38.p9_genomic.gff human refseq data/reference-annotations/refseq/human/GCF_000001405.35_GRCh38.p9_assembly_report.txt data/reference-annotations/refseq/human/
+echo "Converting RefSeq GFF3 to BED"
+
+python scripts/convert-gff3-or-gtf-to-bed-files.py \
+$refseq_gff3 \
+human \
+refseq \
+$refseq_assembly_report \
+data/reference-annotations/refseq/
 
 # Run for Ensembl
-python scripts/convert-gff3-or-gtf-to-bed-files.py data/reference-annotations/ensembl/human/Homo_sapiens.GRCh38.86.gtf human ensembl data/reference-annotations/ensembl/human/
+
+echo "Converting Ensembl GTF to BED"
+
+python scripts/convert-gff3-or-gtf-to-bed-files.py $ensembl_gtf human ensembl data/reference-annotations/ensembl/
 
 ####################
 
@@ -58,13 +71,15 @@ python scripts/convert-gff3-or-gtf-to-bed-files.py data/reference-annotations/en
 ## For Ensembl Only: $species-utr-$reference-sorted-merged.bed  (The script will attempt to create this file for RefSeq, and you will get an error message from the bedtools merge step, because the input file for this step does not exist for RefSeq)  
 
 # Run for Refseq  
+echo "Sorting & merging RefSeq BED files"
 
-bash scripts/sort-and-merge-reference-annotation-bed-files.sh data/reference-annotations/refseq/human human refseq
+bash scripts/sort-and-merge-reference-annotation-bed-files.sh data/reference-annotations/refseq human refseq
 
 
 #Run for Ensembl
+echo "Sorting & merging Ensembl BED files"
 
-bash scripts/sort-and-merge-reference-annotation-bed-files.sh data/reference-annotations/ensembl/human human ensembl
+bash scripts/sort-and-merge-reference-annotation-bed-files.sh data/reference-annotations/ensembl human ensembl
 
 ####################
 
@@ -75,7 +90,9 @@ bash scripts/sort-and-merge-reference-annotation-bed-files.sh data/reference-ann
 ## original file of all PFAM seed domains  
 ## the output folder  
 
-python scripts/select-human-seed-domains.py data/seed-alignments/PF06758_seed_20151113.txt data/seed-alignments/ 
+echo "Generating a file of human seed domains"
+
+python scripts/select-human-seed-domains.py data/pfam-seed-domains/PF06758_seed_20151113.txt data/pfam-seed-domains/ 
 
 ####################
 
