@@ -37,4 +37,11 @@ Step 2:
 ```
 bash workflow-2.sh
 ```
-Use 
+Run the fasta-for-all-short-exons-nuc.fa and fasta-for-all-long-exons-nuc-$date.fa files through [Transeq](http://www.ebi.ac.uk/Tools/st/emboss_transeq/) for all 6 frames, download the files, and save them as *six-frame-translation-short-exons.fa* and *six-frame-translation-long-exons*.fa
+
+Step 3: 
+```
+bash workflow-3.sh
+```
+Visually confirm the validity of the clade assignments by aligning the 
+
