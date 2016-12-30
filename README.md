@@ -23,7 +23,7 @@ Required files include:
 - Ensembl GTF file  
 
 # Getting Started 
-All of the underlying scripts have been packaged into three workflow scripts, with a supporting config.sh script to specify file paths and directories.  You should modify the config.sh script as necessary to match your directory set-up.  
+All of the underlying scripts have been packaged into three workflow scripts, with a supporting config.sh script to specify file paths and directories.  You should modify the config.sh script as necessary to match your directory set-up. Detailed information on each of the underlying scripts can be found in docs/DUF1220annotator-detailed-doc.md  
 
 - workflow-1.sh  
 - workflow-2.sh  
