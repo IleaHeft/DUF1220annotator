@@ -22,7 +22,7 @@ reference=$3
 exon_file=$output_folder/$species-exons-$reference.bed
 gene_file=$output_folder/$species-genes-$reference.bed
 cds_file=$output_folder/$species-cds-$reference.bed
-utr_file=$output_folder/$species-utr-$reference.bed
+#utr_file=$output_folder/$species-utr-$reference.bed
 
 echo $output_folder
 echo $exon_file
@@ -40,8 +40,21 @@ sort -k 1,1 -k 2,2n $exon_file | bedtools merge -i stdin -s -c 4,5,6 -o distinct
 sort -k 1,1 -k 2,2n $cds_file | bedtools merge -i stdin -s -c 4,5,6 -o distinct | cut -f 1-3,5-7 > $output_folder/$species-cds-$reference-sorted-merged.bed
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 # sort and merge the UTR file (the UTR file should only have data in it for Ensembl
-sort -k 1,1 -k 2,2n $utr_file | bedtools merge -i stdin -s -c 4,5,6 -o distinct | cut -f 1-3,5-7 > $output_folder/$species-utr-$reference-sorted-merged.bed
+#sort -k 1,1 -k 2,2n $utr_file | bedtools merge -i stdin -s -c 4,5,6 -o distinct | cut -f 1-3,5-7 > $output_folder/$species-utr-$reference-sorted-merged.bed
 
 
 #python MakeBedFiles_RefSeq.py $gff3_or_gtf $species $assembly_report $output_folder

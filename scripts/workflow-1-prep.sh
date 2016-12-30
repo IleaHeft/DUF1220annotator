@@ -11,7 +11,7 @@ source scripts/config.sh
 ##The output location (in this case, the same as the original folder where the proteome files are  
 
 echo "Getting longest isoforms from proteome"
-python scripts/get-longest-isoform.py sequences/pep/ sequences/pep/ 
+python scripts/get-longest-isoform.py $proteome_dir $proteome_dir 
 
 ####################
 
@@ -42,13 +42,13 @@ $refseq_gff3 \
 human \
 refseq \
 $refseq_assembly_report \
-data/reference-annotations/refseq/
+$refseq_dir/
 
 # Run for Ensembl
 
 echo "Converting Ensembl GTF to BED"
 
-python scripts/convert-gff3-or-gtf-to-bed-files.py $ensembl_gtf human ensembl data/reference-annotations/ensembl/
+python scripts/convert-gff3-or-gtf-to-bed-files.py $ensembl_gtf human ensembl $ensembl_dir/
 
 ####################
 
@@ -73,13 +73,13 @@ python scripts/convert-gff3-or-gtf-to-bed-files.py $ensembl_gtf human ensembl da
 # Run for Refseq  
 echo "Sorting & merging RefSeq BED files"
 
-bash scripts/sort-and-merge-reference-annotation-bed-files.sh data/reference-annotations/refseq human refseq
+bash scripts/sort-and-merge-reference-annotation-bed-files.sh $refseq_dir human refseq
 
 
 #Run for Ensembl
 echo "Sorting & merging Ensembl BED files"
 
-bash scripts/sort-and-merge-reference-annotation-bed-files.sh data/reference-annotations/ensembl human ensembl
+bash scripts/sort-and-merge-reference-annotation-bed-files.sh $ensembl_dir human ensembl
 
 ####################
 
@@ -92,7 +92,7 @@ bash scripts/sort-and-merge-reference-annotation-bed-files.sh data/reference-ann
 
 echo "Generating a file of human seed domains"
 
-python scripts/select-human-seed-domains.py data/pfam-seed-domains/PF06758_seed_20151113.txt data/pfam-seed-domains/ 
+python scripts/select-human-seed-domains.py $pfam_seed_original $pfam_dir 
 
 ####################
 

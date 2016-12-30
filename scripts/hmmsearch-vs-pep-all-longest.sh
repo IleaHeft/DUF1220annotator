@@ -1,9 +1,15 @@
+#! /usr/bin/env bash
+
+source scripts/config.sh
+
 hmm=$1
-SpeciesGroup=$2
-ProteomeFolder="./sequences/pep/$SpeciesGroup/*.pep.all.longest.fa"
+#SpeciesGroup=$2
+ProteomeFolder=$proteome_dir/*.pep.all.longest.fa
+
+echo $ProteomeFolder
 
 NOW=$(date +"%Y-%m-%d")
-OUTFOLDER=results/$NOW/hmmsearch-vs-pep-all-longest
+OUTFOLDER=results/hmmsearch-vs-pep-all-longest
 for i in $ProteomeFolder;
 	do
 		SPECIES=$(echo $(basename $i) | cut -f1 -d.);

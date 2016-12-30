@@ -1,8 +1,13 @@
+#! /usr/bin/env bash
+
+source scripts/config.sh
+
+
 NOW=$(date +"%Y-%m-%d")
-INFOLDER="$NOW-hmmsearch-vs-pep-all-longest"
-OUTFOLDER="$NOW-duf1220-all-ensembl-nucl"
-SpeciesGroup=$1
-cDNAfolder="./sequences/cdna/$SpeciesGroup/*.cdna.all.fa"
+INFOLDER=results/"hmmsearch-vs-pep-all-longest"
+OUTFOLDER=results/"duf1220-all-ensembl-nucl"
+#SpeciesGroup=$1
+cDNAfolder=$cdna_dir/*.cdna.all.fa
 echo $cDNAfolder
 
 for CDNA in $cDNAfolder; do 
