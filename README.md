@@ -2,7 +2,7 @@
 
 DUF1220annotator is a toolkit for locating the coordinates of DUF1220 domains in a reference genome and assigning them to the appropriate DUF1220 subytpe/clade. 
 
-This code was used to generate the DUF1220 annotations utilized in:
+This code was used to generate the DUF1220 annotations utilized in the forthcoming paper:
 
 > Astling, DP, Heft IE, Jones, KL, Sikela, JM. "High resolution measurement of DUF1220 domain copy number from whole genome sequence data"
 
@@ -23,7 +23,7 @@ Required files include:
 - Ensembl GTF file  
 
 # Getting Started 
-All of the underlying scripts have been packaged into three workflow scripts, with a supporting config.sh script to specify file paths, and directories.  You should modify the config.sh script as necessary to match your directory set-up.  
+All of the underlying scripts have been packaged into three workflow scripts, with a supporting config.sh script to specify file paths and directories.  You should modify the config.sh script as necessary to match your directory set-up.  
 
 - workflow-1.sh  
 - workflow-2.sh  
@@ -37,11 +37,11 @@ Step 2:
 ```
 bash workflow-2.sh
 ```
-Run the fasta-for-all-short-exons-nuc.fa and fasta-for-all-long-exons-nuc-$date.fa files through [Transeq](http://www.ebi.ac.uk/Tools/st/emboss_transeq/) for all 6 frames, download the files, and save them as *six-frame-translation-short-exons.fa* and *six-frame-translation-long-exons*.fa
+Run the *fasta-for-all-short-exons-nuc.fa* and *fasta-for-all-long-exons-nuc.fa* files through [Transeq](http://www.ebi.ac.uk/Tools/st/emboss_transeq/) for all 6 frames, download the files, and save them as *six-frame-translation-short-exons.fa* and *six-frame-translation-long-exons*.fa
 
 Step 3: 
 ```
 bash workflow-3.sh
 ```
-Visually confirm the validity of the clade assignments by aligning the 
+Visually confirm the validity of the clade assignments by aligning the file *fasta-for-protein-domains-with-clades.fa* with [Clustal Omega](http://www.ebi.ac.uk/Tools/msa/clustalo/) and generating a phylogenetic tree (if desired).  
 
