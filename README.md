@@ -43,5 +43,5 @@ Step 3:
 ```
 bash workflow-3.sh
 ```
-Visually confirm the validity of the clade assignments by aligning the file *fasta-for-protein-domains-with-clades.fa* with [Clustal Omega](http://www.ebi.ac.uk/Tools/msa/clustalo/) and generating a phylogenetic tree (if desired).  
+Visually confirm the validity of the clade assignments by aligning the file *fasta-for-protein-domains-clade-based-numbering.fa* with [Clustal Omega](http://www.ebi.ac.uk/Tools/msa/clustalo/) and generating a phylogenetic tree (if desired).  
 
