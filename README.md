@@ -31,11 +31,11 @@ All of the underlying scripts have been packaged into three workflow scripts, wi
 
 ## Step 1:  
 ```
-bash workflow-1.sh
+bash scripts/workflow-1.sh
 ```
 ## Step 2:
 ```
-bash workflow-2.sh
+bash scripts/workflow-2.sh
 ```
 ## Step 3:  
 
@@ -43,7 +43,7 @@ Run the *fasta-for-all-short-exons-nuc.fa* and *fasta-for-all-long-exons-nuc.fa*
 
 ## Step 4: 
 ```
-bash workflow-3.sh
+bash scripts/workflow-3.sh
 ```
 
 ## Step 5:
