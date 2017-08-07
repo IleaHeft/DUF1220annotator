@@ -10,4 +10,9 @@ python scripts/select-correct-translation-and-combine-doublets.py $annotation_di
 
 python scripts/give-aligned-seqs-clade-names-and-conserved-exon-groups.py $annotation_dir/$fasta_transl_doublets_and_lone $annotation_dir/$fasta_all_non_duf $annotation_dir/$combo_refseq_ensembl_bed $annotation_dir/
 
+if [ $species == "panTrog" ];then
+    echo "assigning clades for panTrog"
+    python scripts/give-aligned-seqs-clade-names-and-conserved-exon-groups.py $annotation_dir/$fasta_transl_doublets_and_lone $annotation_dir/$fasta_all_non_duf $annotation_dir/annotated-nbpf-exons-all-doublets-refseq.bed $annotation_dir/
+fi
+
 bash scripts/number-domains-according-to-clade.sh $annotation_dir/$annotation_domain_numbering  $annotation_dir/$fasta_protein_domains_with_clades $annotation_dir/

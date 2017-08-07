@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 source scripts/config.sh
-
+echo $species
 #Action: Using the starting proteome file, make a new file that contains only the logest isoforms of each protein
 
 #Script: _get-longest-isoform.py_ (Credit to Zimmer & Montgomery, 2015) 
@@ -39,16 +39,16 @@ echo "Converting RefSeq GFF3 to BED"
 
 python scripts/convert-gff3-or-gtf-to-bed-files.py \
 $refseq_gff3 \
-human \
+$species \
 refseq \
 $refseq_assembly_report \
-$refseq_dir/
+$refseq_dir
 
 # Run for Ensembl
 
 echo "Converting Ensembl GTF to BED"
 
-python scripts/convert-gff3-or-gtf-to-bed-files.py $ensembl_gtf human ensembl $ensembl_dir/
+python scripts/convert-gff3-or-gtf-to-bed-files.py $ensembl_gtf $species ensembl $ensembl_dir
 
 ####################
 
@@ -73,27 +73,15 @@ python scripts/convert-gff3-or-gtf-to-bed-files.py $ensembl_gtf human ensembl $e
 # Run for Refseq  
 echo "Sorting & merging RefSeq BED files"
 
-bash scripts/sort-and-merge-reference-annotation-bed-files.sh $refseq_dir human refseq
+bash scripts/sort-and-merge-reference-annotation-bed-files.sh $refseq_dir refseq
 
 
 #Run for Ensembl
 echo "Sorting & merging Ensembl BED files"
 
-bash scripts/sort-and-merge-reference-annotation-bed-files.sh $ensembl_dir human ensembl
+bash scripts/sort-and-merge-reference-annotation-bed-files.sh $ensembl_dir ensembl
+
 
 ####################
-
-# Action: From the full set of DUF1220 seed domains, extract out only the seed domains annotated as being human by running the below code:  
-
-# Script: _select-human-seed-domains.py_  
-# Input:  
-## original file of all PFAM seed domains  
-## the output folder  
-
-echo "Generating a file of human seed domains"
-
-python scripts/select-human-seed-domains.py $pfam_seed_original $pfam_dir 
-
-####################
-
-#Prepatory steps are now complete, run workflow-par
+#Prepatory steps are now complete, run workflow-2.sh
+echo "Prepartory steps complete - ready to run workflow-2.sh"

@@ -77,10 +77,16 @@ for strand_file in files:
                 domain_current = domain
 
                 gene_clade = domain_current.split("_")[0] + "_" + domain_current.split("_")[1]
+                
                 domain_counter[gene_clade] += 1
 
-                domain_new = gene_clade + "_" + str(domain_counter[gene_clade])
-                
+                # this ifelse block is required to correctly number the CON4 domains in NBPF4 and NBPF6 - this is because their current annotation has a non-DUF exon between the short and long exons
+                if "CON4" not in domain:
+                    domain_new = gene_clade + "_" + str(domain_counter[gene_clade])
+                else:
+                    domain_new = gene_clade + "_" + "1"
+
+
                 old_new[domain] = domain_new
                 to_print = [chrom, start, end, domain_new, gene, strand, exon_length]
                 print  "\t".join(to_print)
@@ -111,6 +117,7 @@ for line in open(domain_numbered_protein_fasta_file):
         new_domain = old_new[old_domain]
         new_header = ">" + new_domain
         
+       
         print >> out_new_fasta, new_header
     else:
         seq = line.strip()

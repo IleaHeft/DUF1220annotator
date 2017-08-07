@@ -14,9 +14,11 @@
 #assembly_report=$4
 #output_folder=$5
 
-output_folder=$1 #The folder where the results of the phython code are stored
-species=$2
-reference=$3
+
+source scripts/config.sh
+
+output_folder=$1 #The folder where the results of the code are stored
+reference=$2
 
 #Create variable names for the exon, gene, and coding sequence files that will be output from MakeBEDfiles.py
 exon_file=$output_folder/$species-exons-$reference.bed
@@ -39,39 +41,3 @@ sort -k 1,1 -k 2,2n $exon_file | bedtools merge -i stdin -s -c 4,5,6 -o distinct
 
 sort -k 1,1 -k 2,2n $cds_file | bedtools merge -i stdin -s -c 4,5,6 -o distinct | cut -f 1-3,5-7 > $output_folder/$species-cds-$reference-sorted-merged.bed
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# sort and merge the UTR file (the UTR file should only have data in it for Ensembl
-#sort -k 1,1 -k 2,2n $utr_file | bedtools merge -i stdin -s -c 4,5,6 -o distinct | cut -f 1-3,5-7 > $output_folder/$species-utr-$reference-sorted-merged.bed
-
-
-#python MakeBedFiles_RefSeq.py $gff3_or_gtf $species $assembly_report $output_folder
-
-#awk 'BEGIN {OFS="\t"} ($1 != "None")' $exon_file |  sed 's/gene=//g' | \
-#sed 's/transcript_id=//g' |  sort -k 1,1 -k 2,2n  | \
-#awk 'BEGIN {OFS="\t"} {print $1,$2,$3,$4,$5,$6,$7}'|\
-
-#bedtools merge -s -c 4,5,6 -o distinct -i stdin > $output_folder/"$species-sorted-merged-refseq-exons.bed" 
-
-
-
-#awk 'BEGIN {OFS="\t"} ($1 != "None")' $gene_file |  sed 's/gene=//g' | \
-#sed 's/transcript_id=//g' | sort -k 1,1 -k 2,2n | \
-#awk 'BEGIN {OFS = "\t"} {print $1,$2,$3,$4,$5,$6,$7}'> $output_folder/"$species-sorted-refseq-genes.bed"
-
-#awk 'BEGIN {OFS="\t"} ($1 != "None")' $cds_file |  sed 's/gene=//g' | \
-#sed 's/transcript_id=//g' | sort -k 1,1 -k 2,2n | \
-#awk 'BEGIN {OFS = "\t"} {print $1,$2,$3,$4,$5,$6,$7}'| \
-#bedtools merge -s -c 4,5,6 -o distinct -i stdin > $output_folder/"$species-sorted-merged-refseq-CDS.bed"

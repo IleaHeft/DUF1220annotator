@@ -57,7 +57,7 @@ for domain, seq in domain_seq.items(): #The long exons of the different clades v
         clade = "HLS1/HLS2"
 
     # This one accounts for the HLS2(short)/HLS1(long) hybrids in NBPF26
-    elif "IEKYQEVEEDQDPSCP" in seq and "AVDM" in seq:
+    elif "IEKYQEVEEDQDPSCP" in seq and "GLAVD" in seq:
         clade = "HLS2/HLS1"
 
     # This one accounts for the seemingly HLS3(short)/HLS2(long) hybrid in NBPF17P
@@ -86,8 +86,8 @@ for domain, seq in domain_seq.items(): #The long exons of the different clades v
 
 
     
-    # Most HLS1 sequences are caputred by the AVDMD at the end of their sequence
-    elif "AVDM" in seq or "AFDMD" in seq or "AIDMD" in seq or "ALDMD" in seq:
+    # Most HLS1 sequences are caputred by the AVDMD at the end of their sequence - the "QQRVGLAVD" is only necessary to pick up the lone lone sequence from NBPF26 - it would probably fit the "AVDM" motif, but the "M" is chopped of 
+    elif "AVDM" in seq or "AFDMD" in seq or "AIDMD" in seq or "ALDMD" in seq or "QQRVGLAVD" in seq:
         clade ="HLS1"
 
     # Most HLS2 sequences have the "LGLALDVD" run at their end, "LGLALDLD" caputures an NBPF9 domain
@@ -121,7 +121,7 @@ for domain, seq in domain_seq.items(): #The long exons of the different clades v
     # NBPF6-DUF-3
     # NBPF4-DUF-3
 
-    elif "SFEDKQVSLALVD" in seq:
+    elif "STLYSFE" in seq:
         clade = "CON5"
 
     ### Here is another 4/5/6/22p clade
@@ -145,7 +145,7 @@ for domain, seq in domain_seq.items(): #The long exons of the different clades v
         clade = "CON8"
 
     else:
-        clade = "NO SEQUENCE MATCH"
+        clade = "NO-SEQUENCE-MATCH"
 
     domain_clade[domain] = clade
 
@@ -352,8 +352,8 @@ for line in open(my_annotation):
         if current_annotation == "NBPF21P_duf-short_2":
             clade = "CON4(short)"
 
-        elif current_annotation == "NBPF21P_duf-long_2":
-            clade = "DIV(long)" #The long exon sequence is too diverged to confidently assign it to any one clade
+        #elif current_annotation == "NBPF21P_duf-long_2":
+         #   clade = "DIV(long)" #The long exon sequence is too diverged to confidently assign it to any one clade
 
         elif current_annotation == "NBPF18P_CON1-SHORT_1":
             clade = "CON1-SHORT"

@@ -36,6 +36,9 @@ outputExon=open(output_folder + "/" + species + "-exons-" + reference + ".bed",m
 outputCDS=open(output_folder + "/" + species + "-cds-" + reference + ".bed",mode='w')
 outputUTR=open(output_folder + "/" + species + "-utr-" + reference + ".bed",mode='w')
 
+print species
+print output_folder + "/" + species + "-genes-" + reference + ".bed"
+
 regions_to_keep=["exon","gene", "CDS","five_prime_utr", "three_prime_utr","start_codon","stop_codon"]
 
 accession_chr_dict=defaultdict(str)

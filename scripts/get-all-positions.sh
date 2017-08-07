@@ -6,7 +6,6 @@ source scripts/config.sh
 NOW=$(date +"%Y-%m-%d")
 INFOLDER=results/"hmmsearch-vs-pep-all-longest"
 OUTFOLDER=results/"duf1220-all-ensembl-nucl"
-#SpeciesGroup=$1
 cDNAfolder=$cdna_dir/*.cdna.all.fa
 echo $cDNAfolder
 
