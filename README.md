@@ -29,20 +29,24 @@ All of the underlying scripts have been packaged into three workflow scripts, wi
 - workflow-2.sh  
 - workflow-3.sh  
 
-Step 1:  
+## Step 1:  
 ```
 bash workflow-1.sh
 ```
-Step 2:
+## Step 2:
 ```
 bash workflow-2.sh
 ```
+## Step 3:  
+
 Run the *fasta-for-all-short-exons-nuc.fa* and *fasta-for-all-long-exons-nuc.fa* files through [Transeq](http://www.ebi.ac.uk/Tools/st/emboss_transeq/) for all 6 frames, download the files, and save them as *six-frame-translation-short-exons.fa* and *six-frame-translation-long-exons*.fa
 
-Step 3: 
+## Step 4: 
 ```
 bash workflow-3.sh
 ```
+
+## Step 5:
 Visually confirm the validity of the clade assignments by aligning the file *fasta-for-protein-domains-clade-based-numbering.fa* with [Clustal Omega](http://www.ebi.ac.uk/Tools/msa/clustalo/) and save as *aligned-pro-domain-w-clades.aln*. Generate a phylogenetic tree is helpful (if desired).  
 
 Might also want to perform the above steps with the fasta file that inludes "lone" protein sequences: *fasta-for-protein-domains-and-lone-with-clades.fa* and save as *aligned-protein-doublets-and-lone-with-clades.aln*
