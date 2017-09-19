@@ -1,5 +1,12 @@
 # How to run the analysis for Chimpanzee
 
+## Nucleotide sequence based approach
+
+1. Make nucleotide HMM from alignment of full-domain (short exon, intron, long exon) sequences located and classified into clades for humans
+2. Used that nucleotide HMM to do a nhmmer search of the chimpanzee reference genome
+3. Locate G4s either by eye, or by doing a separate nhmmer analysis of just 108bp G4 exons and see where they show up
+
+## Protein sequence based approach (probably not going to work that well because of failure to select correct translation
 At present, the exon annotations for chimpanzee are poor and most short exons are not annotated, so some changes to the normal flow are necessary. 
 
 1. Modify the scripts/config.sh file to reflect the parameters for chimpanzee rather than human
