@@ -17,8 +17,32 @@ cat ../human/fasta-for-human-long-duf-exons-with-clade-names-nuc.fa fasta-for-ch
 sed 's/>[A-Z]/>chr1:N/g' fasta-combined-human-chimp-long-exons-nuc.fa > fasta-combined-human-chimp-long-exons-nuc-with-name-mod.fa
 ```
 
-5. Make a blank file for short exons so that the follow-on script runs: ``` touch six-frame-translation-short-exons.fa ```
-6. Run ```bash scripts/workflow-3.sh```
+6. Align the fasta file of human and chimp long exons with Clustal Omega
+7. Generate a distance matrix with Geneious, and export the distance matrix (this produces a csv file)
+8. Use the python code I wrote to find the best human match for each chimp sequence
+
+```
+python scripts/find-best-chimp-match-to-human.py annotation/panTrog-2017-09-21/distance-matrix-human-chimp-long-exons-nuc.csv > annotation/panTrog-2017-09-21/chimp-to-human-best-matches.txt
+```
+
+9. Update the chimp bed file with the information on the best clade match
+
+```
+python scripts/update-chimp-bed-file-with-clades.py annotation/panTrog-2017-09-21/domain_cords_clean.bed annotation/panTrog-2017-09-21/chimp-to-human-best-matches.txt > annotation/panTrog-2017-09-21/chimp-long-exon-coords-with-clades.bed
+```
+
+10. Find the G4 sequences
+
+10.1 Make nucleotide hmm of the G4 108bp exon using an alignment of the 108bp exon sequences from human
+```
+bash scripts/make-nucleotide-hmm-of-human-G4-108bp-exon.sh 
+```
+
+10.2 Search the non-human reference using this nucleotide hidden markov model
+```
+bash scripts/nhmmer-search-of-non-human-reference-for-G4108bpexon.sh
+```
+**NOTE** - This search return no hits matching the search criteria for panTro5, but does return 8 hits for panTro4
 
 ## Nucleotide sequence based approach -  old
 
