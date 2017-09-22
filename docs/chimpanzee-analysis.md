@@ -44,6 +44,8 @@ bash scripts/nhmmer-search-of-non-human-reference-for-G4108bpexon.sh
 ```
 **NOTE** - This search return no hits matching the search criteria for panTro5, but does return 8 hits for panTro4
 
+11. Integrate the coordinates of the G4 108bp matches with the BED file of DUF1220 long exons and see where they fall
+
 ## Nucleotide sequence based approach -  old
 
 1. Make nucleotide HMM from alignment of full-domain (short exon, intron, long exon) sequences located and classified into clades for humans (This is taking a super long time to run)
