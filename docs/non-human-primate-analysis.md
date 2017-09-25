@@ -1,8 +1,8 @@
-# How to run the analysis for Chimpanzee
+# How to run the analysis for non-human primates
 
 ## Nucleotide sequence based approach
 
-At present, the exon annotations for chimpanzee are poor and most short exons are not annotated, so some changes to the normal flow are necessary. 
+At present, the exon annotations for non-human priamtes are poor and most short exons are not annotated, so some changes to the normal flow are necessary. 
 
 1. Modify the scripts/config.sh file to reflect the parameters for chimpanzee rather than human
 2. Run ```bash scripts/workflow-1.sh```
