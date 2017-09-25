@@ -4,7 +4,7 @@
 
 At present, the exon annotations for non-human priamtes are poor and most short exons are not annotated, so some changes to the normal flow are necessary. 
 
-1. Modify the scripts/config.sh file to reflect the parameters for chimpanzee rather than human
+1. Modify the scripts/config.sh file to reflect the parameters for the non-human species you are analyzing - notably, make sure to change both the "species" and the "ref" parameters as desired
 2. Run ```bash scripts/workflow-1.sh```
 3. Run ```bash scripts/workflow-2.sh```
 4. Run ```bash scripts/get-fasta-non-human-long-exons.sh```
