@@ -5,7 +5,7 @@
 At present, the exon annotations for non-human priamtes are poor and most short exons are not annotated, so some changes to the normal flow are necessary. 
 
 1. Modify the scripts/config.sh file to reflect the parameters for the non-human species you are analyzing - notably, make sure to change both the "species" and the "ref" parameters as desired
-2. Run ```bash scripts/workflow-1.sh```
+2. Run ```bash scripts/workflow-1.sh``` (this step can be skipped if you don't care about using the gene and exon annotations or if they don't exist)  
 3. Run ```bash scripts/workflow-2.sh```
 4. Run ```bash scripts/get-fasta-non-human-long-exons.sh```
 5. Combine the non-human long exon fasta file with a fasta file of human exons with clade annotation, and modify the sequence names of the human ones so that Clustal Omega works 
